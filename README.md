@@ -34,37 +34,56 @@ java Main
 ## 📐 Diagrama UML
 ```mermaid
 classDiagram
-direction TB
-
-class ComponenteCadastro {
-  +exibir
-  +adicionar
-  +remover
-}
-
-class Secao {
-  -nome
-  -filhos
-  +adicionar
-  +remover
-  +exibir
-}
-
-class ItemCadastro {
-  -chave
-  -valor
-  +exibir
-  +equals
-  +hashCode
-}
-
-class Colaborador {
-  -nomeCompleto
-  +getNomeCompleto
-}
-
-ComponenteCadastro <|.. Secao
-ComponenteCadastro <|.. ItemCadastro
-Secao <|-- Colaborador
-
+    direction TB
+    
+    class ComponenteCadastro {
+        <<abstract>>
+        <<interface>>
+        +exibir()*
+        +adicionar(ComponenteCadastro)*
+        +remover(ComponenteCadastro)*
+    }
+    
+    class Secao {
+        <<composite>>
+        -nome: String
+        -filhos: List~ComponenteCadastro~
+        +adicionar(ComponenteCadastro)
+        +remover(ComponenteCadastro)
+        +exibir()
+    }
+    
+    class ItemCadastro {
+        <<leaf>>
+        -chave: String
+        -valor: String
+        -colaborador: Colaborador
+        +exibir()
+        +equals(Object) boolean
+        +hashCode() int
+    }
+    
+    class Colaborador {
+        -nomeCompleto: String
+        +getNomeCompleto() String
+        +setNomeCompleto(String)
+    }
+    
+    %% Relacionamentos
+    ComponenteCadastro <|-- Secao
+    ComponenteCadastro <|-- ItemCadastro
+    Secao o-- ComponenteCadastro : filhos
+    ItemCadastro --> Colaborador : colaborador
+    
+    %% Estilos
+    class ComponenteCadastro {
+        fill: #f9f9f9
+        stroke: #666
+    }
+    class Secao {
+        fill: #e1f5fe
+    }
+    class ItemCadastro {
+        fill: #f3e5f5
+    }
 ```
