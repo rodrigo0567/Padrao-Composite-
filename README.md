@@ -1,4 +1,4 @@
-# 📌 Sistema de Cadastro de Colaborador (Composite Pattern)
+# 📌 Sistema de Cadastro de Colaborador (Com Padrão Composite)
 
 ## Grupo
 DAVI HENRIQUE TEIXEIRA DE BARROS
@@ -36,37 +36,32 @@ java Main
 classDiagram
 direction TB
 
-
 interface ComponenteCadastro {
-+String exibir(int nivel)
-+void adicionar(ComponenteCadastro)
-+void remover(ComponenteCadastro)
+  +exibir : String
+  +adicionar
+  +remover
 }
-
 
 class Secao {
--String nome
--List<ComponenteCadastro> filhos
-+adicionar(c)
-+remover(c)
-+exibir(nivel)
+  -nome : String
+  -filhos : List<ComponenteCadastro>
+  +adicionar
+  +remover
+  +exibir : String
 }
-
 
 class ItemCadastro {
--String chave
--String valor
-+exibir(nivel)
-+equals(o)
-+hashCode()
+  -chave : String
+  -valor : String
+  +exibir : String
+  +equals
+  +hashCode
 }
-
 
 class Colaborador {
--String nomeCompleto
-+getNomeCompleto()
+  -nomeCompleto : String
+  +getNomeCompleto : String
 }
-
 
 ComponenteCadastro <|.. Secao
 ComponenteCadastro <|.. ItemCadastro
