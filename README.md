@@ -36,34 +36,35 @@ java Main
 classDiagram
 direction TB
 
-interface ComponenteCadastro {
-  +exibir : String
+class ComponenteCadastro {
+  +exibir
   +adicionar
   +remover
 }
 
 class Secao {
-  -nome : String
-  -filhos : List<ComponenteCadastro>
+  -nome
+  -filhos
   +adicionar
   +remover
-  +exibir : String
+  +exibir
 }
 
 class ItemCadastro {
-  -chave : String
-  -valor : String
-  +exibir : String
+  -chave
+  -valor
+  +exibir
   +equals
   +hashCode
 }
 
 class Colaborador {
-  -nomeCompleto : String
-  +getNomeCompleto : String
+  -nomeCompleto
+  +getNomeCompleto
 }
 
 ComponenteCadastro <|.. Secao
 ComponenteCadastro <|.. ItemCadastro
 Secao <|-- Colaborador
+
 ```
